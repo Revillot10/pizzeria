@@ -1,0 +1,65 @@
+#root{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+*{
+  margin:0px;
+  padding:opx;
+  border:0px;
+}
+
+.estilo_navbar_navbar{
+  background-color: black;
+  color: aliceblue;
+  width: 100vw;
+}
+.estilo_cont_navbar{
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.total_nav{
+  color:aqua;
+  border: 1px solid aqua ;
+  padding: 10px;
+  margin:4px;
+}
+
+h1{
+  font-size: 28px;
+}
+
+h4{
+  font-size: 10px;
+}
+
+.par_14{
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.par_12{
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.p12w{
+  font-size: 12px;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+}
+
+.par_22{  
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
