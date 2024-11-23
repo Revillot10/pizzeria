@@ -22,6 +22,10 @@ const Navbar_Cmp = () => {
               <Nav.Link href="#features"><FontAwesomeIcon icon={faPizzaSlice} style={{color: "#FFD43B",}} /><span className="text-white"> Home</span></Nav.Link>
               <Nav.Link href="#pricing">{token ? (<FontAwesomeIcon icon={faLockOpen} style={{color: "#FFD43B",}} />):(<FontAwesomeIcon icon={faKey} style={{color: "#FFD43B",}} />)}<span className="text-white">{token ? (" Profile"):(" Login")} </span></Nav.Link>
               <Nav.Link href="#pricing">{token ? (<FontAwesomeIcon icon={faLock} style={{color: "#FFD43B",}} />):(<FontAwesomeIcon icon={faKey} style={{color: "#FFD43B",}} />)}<span className="text-white">{token ? (" Logout"):(" Register")} </span></Nav.Link>
+              <Nav.Link href="#pricing">{token ? (<FontAwesomeIcon icon={faKey} style={{color: "#FFD43B",}} />):(<FontAwesomeIcon icon={faKey} style={{color: "#FFD43B",}} />)}<span className="text-white">{token ? (" Login"):(" Profile")} </span></Nav.Link>
+              <Nav.Link href="#pricing">{token ? (<FontAwesomeIcon icon={faKey} style={{color: "#FFD43B",}} />):(<FontAwesomeIcon icon={faKey} style={{color: "#FFD43B",}} />)}<span className="text-white">{token ? (" Register"):(" Logout")} </span></Nav.Link>
+
+
             </Nav>
             <Nav>
               <Nav.Link href="#deets">🛒<span className="total_nav">Total: ${total}</span></Nav.Link>
