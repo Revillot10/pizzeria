@@ -1,63 +1,78 @@
-#root{
-  height: 100vh;
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;  /* Aseguramos que el body no exceda el ancho de la pantalla */
+  min-height: 100vh;
+  overflow-x: hidden;  /* Oculta el desplazamiento horizontal */
+}
+
+#root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-}
-*{
-  margin:0px;
-  padding:opx;
-  border:0px;
+  min-height: 100vh; /* Esto asegura que el contenido ocupe al menos toda la altura de la pantalla */
 }
 
-.estilo_navbar_navbar{
+footer {
+  margin-top: auto;  /* Esto asegura que el footer se mantenga al fondo si el contenido es pequeño */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.estilo_navbar_navbar {
   background-color: black;
   color: aliceblue;
   width: 100vw;
 }
-.estilo_cont_navbar{
+
+.estilo_cont_navbar {
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.total_nav{
-  color:aqua;
-  border: 1px solid aqua ;
+.total_nav {
+  color: aqua;
+  border: 1px solid aqua;
   padding: 10px;
-  margin:4px;
+  margin: 4px;
 }
 
-h1{
+h1 {
   font-size: 28px;
 }
 
-h4{
+h4 {
   font-size: 10px;
 }
 
-.par_14{
+.par_14 {
   font-size: 14px;
   display: flex;
   justify-content: center;
 }
 
-.par_12{
+.par_12 {
   font-size: 12px;
   display: flex;
   justify-content: center;
 }
 
-.p12w{
+.p12w {
   font-size: 12px;
   color: aliceblue;
   display: flex;
   justify-content: center;
 }
 
-.par_22{  
+.par_22 {  
   font-size: 22px;
   display: flex;
   justify-content: center;
