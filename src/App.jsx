@@ -10,10 +10,12 @@ import Login from './views/Login';
 import Pizza from './views/Pizza';
 import Register from './views/Register';
 import { Routes, Route } from 'react-router-dom';
+import CartProvider from "./context/CartContext";
 
 function App() {
   return (
     <>
+    <CartProvider>
       <Navbar_Cmp />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -22,11 +24,10 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/pizza/p001" element={<Pizza />} />
-        <Route path="*" element={<NotFound />}
- />
-
+        <Route path="*" element={<NotFound />}/>
       </Routes>
       <Footer />
+      </CartProvider>
     </>
   );
 }

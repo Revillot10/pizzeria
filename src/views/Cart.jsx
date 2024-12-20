@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { pizzaCart } from './pizzas';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import { CartContext } from '../context/CartContext'; 
 
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
+  const { cart, setCart } = useContext(CartContext);
 
   const increaseCount = (id) => {
     setCart((prevCart) => prevCart.map((item) => item.id === id ? { ...item, count: item.count + 1 } : item) );

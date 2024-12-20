@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react'; 
 import CardPizza from '../components/CardPizza';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { CartContext } from '../context/CartContext'; 
 
 const Home = () => {
   const [pizzas, setPizzas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { cart, setCart } = useContext(CartContext); 
 
   useEffect(() => {
     const fetchPizzas = async () => {
@@ -26,6 +28,17 @@ const Home = () => {
     fetchPizzas();
   }, []);
 
+
+  const addToCart = (pizza) => {
+    const existingPizza = cart.find((item) => item.id === pizza.id);
+    if (existingPizza) {      
+      setCart(cart.map((item) => item.id === pizza.id ? { ...item, count: item.count + 1 }  : item ));
+    }else {
+      setCart([...cart, { ...pizza, count: 1 }]);
+    }
+  };
+
+
   if (loading) {
     return <p>Cargando pizzas...</p>;
   }
@@ -36,21 +49,18 @@ const Home = () => {
 
   return (
     <div
-      className="d-flex justify-content-start flex-wrap"
-      style={{ width: '100%', marginBottom: '80px', overflowX: 'hidden' }}
-    >
+    className="d-flex flex-wrap justify-content-start"
+    style={{ width: '100%', overflowX: 'hidden', gap: '20px'}}
+  >
       {pizzas.map((pizza) => (
         <div
           key={pizza.id}
           className="d-flex flex-column m-2"
-          style={{ width: '18rem' }}
+          style={{ width: '21rem' }}
         >
           <CardPizza
-            name={pizza.name}
-            price={pizza.price}
-            ingredients={pizza.ingredients}
-            img={pizza.img}
-            desc={pizza.desc}
+            pizza={pizza} 
+            addToCart={addToCart}
           />
         </div>
       ))}
