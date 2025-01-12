@@ -1,5 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import React, { useContext } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { UserContext } from './context/UserContext'; // Asegúrate de exportar UserContext desde el UserContext
 import Navbar_Cmp from './components/Navbar';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
@@ -9,29 +10,35 @@ import Home from './views/Home';
 import Login from './views/Login';
 import Pizza from './views/Pizza';
 import Register from './views/Register';
-import { Routes, Route } from 'react-router-dom';
-import CartProvider from "./context/CartContext";
+import './App.css'; 
 
-function App() {
+const App = () => {
+  const { token } = useContext(UserContext); // Obtén el token desde el UserContext
+
   return (
-    <>
-    <CartProvider>
+    <>      
       <Navbar_Cmp />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" /> : <Register />}
+        />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="/profile"
+          element={token ? <Profile /> : <Navigate to="/login" />}
+        />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/pizza/p001" element={<Pizza />} />
-        <Route path="*" element={<NotFound />}/>
+        <Route path="/pizza/:id" element={<Pizza />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-      </CartProvider>
     </>
   );
-}
+};
 
 export default App;
-
-

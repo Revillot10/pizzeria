@@ -1,8 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
-const CartProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   return (
@@ -11,5 +11,3 @@ const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-export default CartProvider;
