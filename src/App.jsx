@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { UserContext } from './context/UserContext'; // Asegúrate de exportar UserContext desde el UserContext
+import { UserContext } from './context/UserContext'; // Cambio aquí: importamos UserContext
 import Navbar_Cmp from './components/Navbar';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
@@ -13,7 +13,7 @@ import Register from './views/Register';
 import './App.css'; 
 
 const App = () => {
-  const { token } = useContext(UserContext); // Obtén el token desde el UserContext
+  const { token } = useContext(UserContext); // Cambio aquí: usamos useContext para obtener token desde UserContext
 
   return (
     <>      

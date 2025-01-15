@@ -41,7 +41,7 @@ const CardPizza = ({ pizza, addToCart }) => {
           <Button 
             variant="link" 
             onClick={toggleDescription} 
-            style={{ color: 'black', textDecoration: 'none' }} // Estilo para evitar azul y subrayado
+            style={{ color: 'black', textDecoration: 'none' }} 
           >
             {isExpanded ? 'Ver Menos' : 'Ver Más'} 👀
           </Button>

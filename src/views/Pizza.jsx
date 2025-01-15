@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from 'react-router-dom';
 
@@ -56,9 +57,11 @@ const Pizza = () => {
               </li>
             ))}
           </ul>
-          <button className="btn btn-primary mt-3 w-100" disabled>
+          <Button 
+              variant="dark" 
+              className="d-flex justify-content-center mx-auto text-white">
             Añadir al carrito
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,20 +1,55 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { CartContext } from '../context/CartContext'; 
-import { UserContext } from '../context/UserContext'; 
+import { UserContext } from '../context/UserContext';
+
+const API_BASE_URL = "http://localhost:5000";
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
   const { token } = useContext(UserContext); 
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const increaseCount = (id) => {
-    setCart((prevCart) => prevCart.map((item) => item.id === id ? { ...item, count: item.count + 1 } : item) );
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, count: item.count + 1 } : item
+      )
+    );
   };
 
   const decreaseCount = (id) => {
-    setCart((prevCart) => prevCart.map((item) => item.id === id && item.count > 0 ? { ...item, count: item.count - 1 } : item).filter((item) => item.count > 0) 
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === id && item.count > 0 ? { ...item, count: item.count - 1 } : item
+        )
+        .filter((item) => item.count > 0)
     );
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/checkouts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, 
+        },
+        body: JSON.stringify({ cart }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al realizar la compra. Por favor, inténtalo nuevamente.');
+      }
+
+      setCart([]);
+      setSuccessMessage('¡Compra realizada con éxito!');
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
   const total = cart.reduce((acc, item) => acc + item.price * item.count, 0);
@@ -67,15 +102,23 @@ const Cart = () => {
         </tbody>
       </Table>
       <h3 style={{ textAlign: 'left' }}>Total: ${Intl.NumberFormat('es-CL').format(total)}</h3>
-      <Button 
-        variant="dark" 
-        style={{ display: 'block', textAlign: 'left', marginBottom: '20px' }} 
-        disabled={!token} 
+      <Button
+        variant="dark"
+        style={{ display: 'block', textAlign: 'left', marginBottom: '20px' }}
+        disabled={!token || cart.length === 0}
+        onClick={handleCheckout}
       >
         Pagar
       </Button>
+      {successMessage && (
+        <div className="alert alert-success mt-3">{successMessage}</div>
+      )}
+      {errorMessage && (
+        <div className="alert alert-danger mt-3">{errorMessage}</div>
+      )}
     </div>
   );
 };
 
 export default Cart;
+
